@@ -43,17 +43,14 @@ jobs:
           cargo fetch
           rustup component add --toolchain ${{ matrix.rust-version }} rustfmt clippy
 
-      - name: Run tests
+      - name: Run tests in release mode
         run: cargo test --release
 
-      - name: Run tests with no default features
-        run: cargo test --no-default-features --release
-
-      - name: Run test with standard library
-        run: cargo test --features=std --release
+      - name: Run test in debug mode
+        run: cargo test
 
       - name: Check code formatting
         run: cargo fmt -- --check
 
       - name: Run Clippy
-        run: cargo clippy --features=std -- -Dclippy::all -Dclippy::cargo
+        run: cargo clippy -- -Dclippy::all -Dclippy::cargo
