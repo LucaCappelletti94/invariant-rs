@@ -21,29 +21,29 @@ fn ilog2_with_only_assert(x: usize) -> u32 {
 fn criterion_benchmark(c: &mut Criterion) {
     c.bench_function("ilog2_with_invariant", |b| {
         b.iter(|| {
-            let mut sum = 0;
-            for i in 1..1000 {
-                sum += ilog2_with_invariant(black_box(i));
+            let mut xor = 0;
+            for i in 1..10_000 {
+                xor ^= ilog2_with_invariant(black_box(i));
             }
-            sum
+            xor
         })
     });
     c.bench_function("ilog2_without_invariant", |b| {
         b.iter(|| {
-            let mut sum = 0;
-            for i in 1..1000 {
-                sum += ilog2_without_invariant(black_box(i));
+            let mut xor = 0;
+            for i in 1..10_000 {
+                xor ^= ilog2_without_invariant(black_box(i));
             }
-            sum
+            xor
         })
     });
     c.bench_function("ilog2_with_only_assert", |b| {
         b.iter(|| {
-            let mut sum = 0;
-            for i in 1..1000 {
-                sum += ilog2_with_only_assert(black_box(i));
+            let mut xor = 0;
+            for i in 1..10_000 {
+                xor ^= ilog2_with_only_assert(black_box(i));
             }
-            sum
+            xor
         })
     });
 }
