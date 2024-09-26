@@ -2,5 +2,11 @@
 name = "invariant-rs"
 version = "0.1.0"
 edition = "2021"
-
-[dependencies]
+authors = ["Luca Cappelletti", "Tommaso Fontana"]
+description = "Rust macros for axiomatic invariant assertions."
+homepage = "https://github.com/LucaCappelletti94/invariant-rs"
+repository = "https://github.com/LucaCappelletti94/invariant-rs"
+readme = "README.md"
+license = "MIT"
+keywords = ["invariant", "assertion", "axiomatic"]
+categories = ["Development tools", "No standard library", "Rust patterns"]
