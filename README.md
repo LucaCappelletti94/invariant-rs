@@ -38,9 +38,8 @@ While the second method, `my_log2`, will be compiled to the much simpler:
 
 ```x86asm
 my_log2:
-    push    rax
-    lea     rdi, [rip + .L__unnamed_2]
-    call    qword ptr [rip + core::num::int_log10::panic_for_nonpositive_argument::h3a8d3f879c6e5198@GOTPCREL]
+    bsr     rax, rdi
+    ret
 ```
 
 Note that the compile directive `#[inline(never)]` is used to prevent the compiler from inlining the method, which would make the assembly code harder to read. The `invariant_ne!` macro is used to inform the compiler that the condition `x != 0` is always true, and thus the compiler can optimize the code accordingly.
