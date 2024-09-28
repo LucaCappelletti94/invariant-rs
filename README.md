@@ -22,7 +22,7 @@ pub fn my_log2(x: usize) -> u32 {
 
 The first method, `my_log1`, will be compiled in relase as:
 
-```x86asm
+```assembly
 my_log1:
     test    rdi, rdi
     je      .LBB0_2
@@ -31,12 +31,12 @@ my_log1:
 .LBB0_2:
     push    rax
     lea     rdi, [rip + .L__unnamed_1]
-    call    qword ptr [rip + core::num::int_log10::panic_for_nonpositive_argument::h3a8d3f879c6e5198@GOTPCREL]
+    call    qword ptr [rip + panic_for_nonpositive_argument]
 ```
 
 While the second method, `my_log2`, will be compiled to the much simpler:
 
-```x86asm
+```assembly
 my_log2:
     bsr     rax, rdi
     ret
@@ -46,14 +46,7 @@ Note that the compile directive `#[inline(never)]` is used to prevent the compil
 
 ## Usage
 
-Add this to your `Cargo.toml`:
-
-```toml
-[dependencies]
-invariant = "0.1"
-```
-
-Then you can use the `invariant!` macro to add assertions to your code:
+You can use the `invariant!` macro to add assertions to your code:
 
 ```rust
 use invariant_rs::invariant;
