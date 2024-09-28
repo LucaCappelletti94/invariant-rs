@@ -42,6 +42,21 @@ my_log2:
     ret
 ```
 
+The second method is identical to:
+    
+```rust
+#[inline(never)]
+pub fn my_log2(x: usize) -> u32 {
+    debug_assert_ne!(x, 0);
+    if x == 0 {
+        unsafe {
+            core::hint::unreachable_unchecked();
+        }
+    }
+    x.ilog2()
+}
+```
+
 Note that the compile directive `#[inline(never)]` is used to prevent the compiler from inlining the method, which would make the assembly code harder to read. The `invariant_ne!` macro is used to inform the compiler that the condition `x != 0` is always true, and thus the compiler can optimize the code accordingly.
 
 ## Usage
